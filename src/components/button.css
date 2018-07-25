@@ -1,17 +1,24 @@
-.Button {
+@value primary-light-color, primary-accent-color from '../variables.css';
+
+.button {
   display: inline-block;
   vertical-align: middle;
   margin: 0 4px;
   padding: 10px 20px;
   border: 0;
   border-radius: 2px;
-  color: #ffffff;
+  color: primary-light-color;
   font-size: 14px;
   font-family: inherit;
   background-color: #2196f3;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: pointer;
 }
 
-.Button--active {
-  background-color: #ff4081;
+.active {
+  composes: button;
+  background-color: primary-accent-color;
+}
+
+.disabled {
 }
