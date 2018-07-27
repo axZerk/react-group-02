@@ -11,6 +11,8 @@ export default class Tabs extends Component {
   };
 
   render() {
+    console.log(`Render in Tabs - ${Date.now()}`);
+
     const { activeTabIndex } = this.state;
     const { items } = this.props;
     const activeItem = items[activeTabIndex];
