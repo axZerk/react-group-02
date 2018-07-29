@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Tab from './tab';
-import './tabs.css';
+import Button from '../shared-ui/button';
+import styles from './styles.css';
 
 export default class Tabs extends Component {
   state = {
     activeTabIndex: 0,
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const shouldUpdate = this.state.activeTabIndex !== nextState.activeTabIndex;
+
+    return shouldUpdate;
+  }
 
   setActiveTab = idx => {
     this.setState({
@@ -21,12 +28,15 @@ export default class Tabs extends Component {
     const activeItem = items[activeTabIndex];
 
     return (
-      <div className="tabs">
+      <div className={styles.tabs}>
         <div>
           {items.map((item, idx) => (
-            <button key={item.id} onClick={() => this.setActiveTab(idx)}>
-              {item.name}
-            </button>
+            <Button
+              key={item.id}
+              onClick={() => this.setActiveTab(idx)}
+              active={idx === activeTabIndex}
+              label={item.name}
+            />
           ))}
         </div>
         <hr />

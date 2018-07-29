@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './styles.css';
 
 const Tab = ({ img, descr }) => (
-  <div>
+  <div className={styles.tab}>
     <img src={img} alt="" width={200} />
-    <p>{descr}</p>
+    <p className={styles.text}>{descr}</p>
   </div>
 );
 
