@@ -1,0 +1,82 @@
+.List {
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.List-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #212121;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+/* Pop transition effect */
+.pop-enter {
+  transform: scale(0);
+}
+
+.pop-enter-active {
+  transform: scale(1);
+  transition: transform 300ms ease-in;
+}
+
+.pop-exit {
+  transform: scale(1);
+}
+
+.pop-exit-active {
+  transform: scale(0);
+  transition: transform 300ms ease-out;
+}
+
+/* Slide transition effect */
+/* slideEnter */
+.slide-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* slideEnterActive */
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease-out, transform 300ms linear;
+}
+
+/* slideExit */
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* slideExitActive */
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms ease-out, transform 300ms linear;
+}
+
+/* Fade transition effect */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}

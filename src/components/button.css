@@ -1,0 +1,10 @@
+.Button {
+  border-radius: 2px;
+  padding: 8px 32px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 14px;
+  color: #212121;
+}

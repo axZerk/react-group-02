@@ -1,3 +1,29 @@
 .App {
+}
+
+.App-title {
   text-align: center;
+}
+
+.Block {
+  transition: opacity 300ms ease-in-out;
+  width: 200px;
+  height: 200px;
+  background-color: #009688;
+}
+
+.Block-enter {
+  opacity: 0;
+}
+
+.Block-enter-active {
+  opacity: 1;
+}
+
+.Block-exit {
+  opacity: 1;
+}
+
+.Block-exit-active {
+  opacity: 0;
 }
