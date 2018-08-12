@@ -1,14 +1,7 @@
 import axios from 'axios';
 
-const API_KEY = 'ff9bbd2cbbe435339b9b0aca1c6caa94';
-const BASE_URL = 'https://api.themoviedb.org/3';
+const API_URL = 'https://hn.algolia.com/api/v1/search?query=';
 
-export const fetchMovies = ({ category, onSuccess, onError }) => {
-  const url = `${BASE_URL}/movie/${category}?api_key=${API_KEY}&language=en-US&page=1`;
-
-  return axios
-    .get(url)
-    .then(response => response.data.results)
-    .then(onSuccess)
-    .catch(onError);
+export const fetchArticlesByQuery = (query = 'javascript') => {
+  return axios.get(API_URL + query).then(response => response.data.hits);
 };
