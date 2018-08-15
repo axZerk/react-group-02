@@ -5,31 +5,28 @@ import Backdrop from './shared-ui/backdrop';
 import Loader from './shared-ui/loader';
 import Notification from './notification';
 import QueryForm from './query-form';
-import { fetchArticles } from '../redux/actions';
+import { getAllArticles, isLoading, getError } from '../redux/selectors';
 
-const App = ({ articles, loading, error, fetchArticles }) => (
+const App = ({ articles, loading, error }) => (
   <div>
     <QueryForm />
-    {/* <button onClick={() => fetchArticles('react')}>Fetch Articles</button> */}
     {error && <Notification text={error.message} />}
     {loading && (
       <Backdrop>
         <Loader />
       </Backdrop>
     )}
-    {!error && !loading && <ArticleList articles={articles} />}
+    <ArticleList articles={articles} />
   </div>
 );
 
 const mapStateToProps = state => ({
-  articles: state.articles.items,
-  loading: state.articles.loading,
-  error: state.articles.error,
+  articles: getAllArticles(state),
+  loading: isLoading(state),
+  error: getError(state),
 });
-
-const mapDispatchToProps = { fetchArticles };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(App);
