@@ -1,0 +1,12 @@
+.Nav-link {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.Nav-link:hover {
+  text-decoration: underline;
+}
+
+.Nav-link-active {
+  color: palevioletred;
+}
