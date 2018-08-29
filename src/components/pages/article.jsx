@@ -21,6 +21,7 @@ export default class Article extends Component {
     });
   }
 
+  //TODO: Редиреакт на статьи с правильной категорией
   handleGoBack = () => {
     this.props.history.push('/articles');
   };
