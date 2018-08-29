@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { fetchArticleById } from '../../services/api';
+import { connect } from 'react-redux';
+import { fetchArticleById } from '@services/api';
 
 const getIdFromProps = props => props.match.params.articleId;
 
-export default class Article extends Component {
-  state = {
-    id: null,
-    title: null,
-    imageUrl: null,
-    author: null,
-    category: null,
-    body: null,
-  };
+class ArticlePage extends Component {
+  state = {};
 
   componentDidMount() {
+    if (this.props.article) {
+      return this.setState({ ...this.props.article });
+    }
+
     const id = getIdFromProps(this.props);
 
     fetchArticleById(id).then(article => {
@@ -21,9 +19,17 @@ export default class Article extends Component {
     });
   }
 
-  //TODO: Редиреакт на статьи с правильной категорией
   handleGoBack = () => {
-    this.props.history.push('/articles');
+    const { state } = this.props.location;
+
+    if (state) {
+      return this.props.history.push(state.from);
+    }
+
+    this.props.history.push({
+      pathname: '/articles',
+      search: `?category=${this.state.category}`,
+    });
   };
 
   render() {
@@ -45,3 +51,12 @@ export default class Article extends Component {
     );
   }
 }
+
+const mstp = (state, props) => {
+  const id = getIdFromProps(props);
+
+  return {
+    article: state.articles.items.find(item => item.id === id),
+  };
+};
+export default connect(mstp)(ArticlePage);

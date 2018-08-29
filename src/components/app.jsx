@@ -6,7 +6,6 @@ import ArticlesPage from './pages/articles';
 import ArticlePage from './pages/article';
 import NotFoundPage from './pages/not-found';
 import Navigation from './navigation';
-
 import * as routes from '../constants/routes';
 import './app.css';
 

@@ -1,4 +1,4 @@
-import articles from "./mock-data";
+import articles from './mock-data';
 
 export const fetchAllArticles = () =>
   new Promise(resolve => {
@@ -18,7 +18,7 @@ export const fetchArticleById = id =>
 export const fetchArticlesByCategory = category =>
   new Promise(resolve => {
     setTimeout(() => {
-      if (category === "all") resolve(articles);
+      if (category === 'all') resolve(articles);
 
       const data = articles.filter(a => a.category === category);
       resolve(data);
