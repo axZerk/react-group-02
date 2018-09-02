@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as routes from '../constants/routes';
 import './navigation.css';
 
-const Nav = () => (
-  <ul>
+const PublicLinks = () => (
+  <Fragment>
     <li>
       <NavLink
         exact
@@ -24,6 +27,11 @@ const Nav = () => (
         About
       </NavLink>
     </li>
+  </Fragment>
+);
+
+const PrivateLinks = () => (
+  <Fragment>
     <li>
       <NavLink
         to={routes.ARTICLES}
@@ -33,7 +41,25 @@ const Nav = () => (
         Articles
       </NavLink>
     </li>
-  </ul>
+  </Fragment>
 );
 
-export default Nav;
+const Nav = ({ authenticated, ...rest }) =>
+  console.log(rest) || (
+    <ul className="Nav">
+      <PublicLinks />
+      {authenticated && <PrivateLinks />}
+    </ul>
+  );
+
+const mstp = state => ({
+  authenticated: state.session.authenticated,
+});
+
+export default compose(
+  withRouter,
+  connect(
+    mstp,
+    null,
+  ),
+)(Nav);

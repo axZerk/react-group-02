@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import qs from 'qs';
 import CategorySelector from '../category-selector';
-import * as api from '@services/api';
-import { fetchArticles } from '@redux/actions';
+import { fetchArticles } from '@redux/actions/articles';
 
 const categories = ['all', 'health', 'technology', 'sports'];
 

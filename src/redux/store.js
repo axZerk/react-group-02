@@ -1,14 +1,23 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import articlesReducer from './reducer';
 import thunk from 'redux-thunk';
+import sessionMiddleware from './middlewares/session';
+import rootReducer from './reducers';
 
-const rootReducer = combineReducers({
-  articles: articlesReducer,
-});
+const middlewares = [thunk, sessionMiddleware];
 
-const enhancer = composeWithDevTools(applyMiddleware(thunk));
+const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
 
-const store = createStore(rootReducer, enhancer);
+let sessionState = null;
+
+try {
+  sessionState = JSON.parse(localStorage.getItem('session'));
+} catch (err) {
+  console.log(err);
+}
+
+const persistedState = sessionState ? { session: sessionState } : {};
+
+const store = createStore(rootReducer, persistedState, enhancer);
 
 export default store;

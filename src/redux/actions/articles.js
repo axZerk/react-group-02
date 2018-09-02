@@ -2,7 +2,7 @@ import {
   FETCH_ARTICLES_REQUEST,
   FETCH_ARTICLES_SUCCESS,
   FETCH_ARTICLES_FAILURE,
-} from './types';
+} from '../types';
 import { fetchArticlesByCategory } from '@services/api';
 
 const fetchArticlesRequest = () => ({

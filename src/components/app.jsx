@@ -1,28 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/home';
 import AboutPage from './pages/about';
 import ArticlesPage from './pages/articles';
 import ArticlePage from './pages/article';
 import NotFoundPage from './pages/not-found';
-import Navigation from './navigation';
+import SignInPage from './pages/sign-in';
+import SignUpPage from './pages/sign-up';
+import AppBar from './app-bar';
+import ProtectedRoute from '@shared/protected-route';
 import * as routes from '../constants/routes';
 import './app.css';
 
-const App = () => (
+const App = ({ authenticated }) => (
   <div className="App">
-    <h1 className="App-title">React Router Basics</h1>
-
-    <Navigation />
+    <AppBar />
 
     <Switch>
       <Route exact path={routes.HOME} component={HomePage} />
       <Route path={routes.ABOUT} component={AboutPage} />
-      <Route exact path={routes.ARTICLES} component={ArticlesPage} />
-      <Route path={`${routes.ARTICLES}/:articleId`} component={ArticlePage} />
+      <ProtectedRoute
+        exact
+        path={routes.ARTICLES}
+        component={ArticlesPage}
+        redirectTo={routes.SIGN_IN}
+        authenticated={authenticated}
+      />
+      <ProtectedRoute
+        path={`${routes.ARTICLES}/:articleId`}
+        component={ArticlePage}
+        redirectTo={routes.SIGN_IN}
+        authenticated={authenticated}
+      />
+      <Route path={routes.SIGN_UP} component={SignUpPage} />
+      <Route path={routes.SIGN_IN} component={SignInPage} />
       <Route component={NotFoundPage} />
     </Switch>
   </div>
 );
 
-export default App;
+const mstp = state => ({
+  authenticated: state.session.authenticated,
+});
+
+export default connect(mstp)(App);
