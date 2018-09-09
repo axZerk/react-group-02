@@ -44,13 +44,12 @@ const PrivateLinks = () => (
   </Fragment>
 );
 
-const Nav = ({ authenticated, ...rest }) =>
-  console.log(rest) || (
-    <ul className="Nav">
-      <PublicLinks />
-      {authenticated && <PrivateLinks />}
-    </ul>
-  );
+const Nav = ({ authenticated, ...rest }) => (
+  <ul className="Nav">
+    <PublicLinks />
+    {authenticated && <PrivateLinks />}
+  </ul>
+);
 
 const mstp = state => ({
   authenticated: state.session.authenticated,

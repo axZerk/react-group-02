@@ -59,4 +59,5 @@ const mstp = (state, props) => {
     article: state.articles.items.find(item => item.id === id),
   };
 };
+
 export default connect(mstp)(ArticlePage);

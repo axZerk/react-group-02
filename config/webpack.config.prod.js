@@ -1,5 +1,3 @@
-
-
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -94,6 +92,7 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
       '@pages': path.resolve(__dirname, '../src/components/pages'),
+      '@shared': path.resolve(__dirname, '../src/components/shared'),
       '@services': path.resolve(__dirname, '../src/services'),
       '@redux': path.resolve(__dirname, '../src/redux'),
     },
