@@ -1,19 +1,29 @@
-import React from 'react';
+import * as React from 'react';
 
-const styles = {
-  button: {
-    margin: '0 4px',
-    padding: '8px 32px',
-    fontSize: 16,
-    fontWeight: 500,
-    textTransform: 'uppercase',
-    cursor: 'pointer',
-    borderRadius: 2,
-  },
+type ButtonProps = {
+  label: string,
+  type?: string,
+  onClick?: (event: SyntheticEvent<HTMLButtonElement>) => mixed,
 };
 
-const Button = ({ label, type = 'button', onClick = () => null }) => (
-  <button style={styles.button} type={type} onClick={onClick}>
+const Button: React.StatelessFunctionalComponent<ButtonProps> = ({
+  label,
+  type = 'button',
+  onClick = () => null,
+}: ButtonProps) => (
+  <button
+    style={{
+      margin: '0 4px',
+      padding: '8px 32px',
+      fontSize: 16,
+      fontWeight: 500,
+      textTransform: 'uppercase',
+      cursor: 'pointer',
+      borderRadius: 2,
+    }}
+    type={type}
+    onClick={onClick}
+  >
     {label}
   </button>
 );

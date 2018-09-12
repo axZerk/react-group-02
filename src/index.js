@@ -6,11 +6,28 @@ import App from './components/app';
 import store from './redux/store';
 import './index.css';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Route component={App} />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root'),
-);
+const root: ?Element = document.getElementById('root');
+
+if (root != null) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route component={App} />
+      </BrowserRouter>
+    </Provider>,
+    root,
+  );
+}
+
+// type Product = {
+//   id: number,
+//   name: string,
+// };
+
+// const products: Array<Product> = [
+//   { id: 1, name: 'Apples' },
+//   { id: 2, name: 'Grapes' },
+//   { id: 3, name: 'Pork' },
+// ];
+
+// console.log(products);

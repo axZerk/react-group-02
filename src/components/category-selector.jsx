@@ -1,18 +1,28 @@
-import React from 'react';
+import * as React from 'react';
 
-const styles = {
-  select: {
-    fontSize: 20,
-  },
+type Props = {
+  options: Array<string>,
+  value: string,
+  onChange: (value: string) => mixed,
 };
 
-const CategorySelector = ({ options, value, onChange }) => (
+const CategorySelector: React.StatelessFunctionalComponent<Props> = ({
+  options,
+  value,
+  onChange,
+}: Props) => (
   <select
-    style={styles.select}
+    style={{
+      fontSize: 20,
+    }}
     value={value}
-    onChange={e => onChange(e.target.value)}
+    onChange={(event: SyntheticEvent<HTMLSelectElement>) => {
+      (event.currentTarget: HTMLSelectElement);
+
+      onChange(event.currentTarget.value);
+    }}
   >
-    {options.map(o => (
+    {options.map((o: string) => (
       <option key={o} value={o}>
         {o}
       </option>

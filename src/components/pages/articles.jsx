@@ -5,14 +5,14 @@ import qs from 'qs';
 import CategorySelector from '../category-selector';
 import { fetchArticles } from '@redux/actions/articles';
 
-const categories = ['all', 'health', 'technology', 'sports'];
+const categories: Array<string> = ['all', 'health', 'technology', 'sports'];
 
 const getCategoryFromProps = props =>
   qs.parse(props.location.search.slice(1)).category;
 
-class ArticlesPage extends Component {
+class ArticlesPage extends Component<{}> {
   componentDidMount() {
-    const category = getCategoryFromProps(this.props);
+    const category: string = getCategoryFromProps(this.props);
 
     if (!category) {
       return this.props.history.replace({

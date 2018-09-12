@@ -1,6 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 
-const Loading = ({ error, timedOut, pastDelay, retry }) => {
+type LoadingProps = {
+  error: ?Error,
+  timedOut: boolean,
+  pastDelay: boolean,
+  retry: Function,
+};
+
+const Loading: React.StatelessFunctionalComponent<LoadingProps> = ({
+  error,
+  timedOut,
+  pastDelay,
+  retry,
+}: LoadingProps) => {
   if (error) {
     return (
       <div>
